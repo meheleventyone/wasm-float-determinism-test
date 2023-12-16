@@ -1,0 +1,6 @@
+/zig-out/
+/zig-cache/
+/zig/zig-cache/
+/zig/zig-out/
+.DS_Store
+*.code-workspace

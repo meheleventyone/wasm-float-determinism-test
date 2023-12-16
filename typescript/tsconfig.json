@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "outDir": "../static/js",
+      "module": "es2015",
+      "strict": true,
+      "target": "ES6",
+      "lib": ["DOM", "DOM.Iterable", "ES2017"],
+      "typeRoots": ["./types"]
+    },
+    "include": [
+      "src"
+    ]
+  }

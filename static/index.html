@@ -1,0 +1,24 @@
+<html>
+<link type="text/css" rel="stylesheet" href="stylin.css">
+<script src="js/main.js" type="module">
+</script>
+
+<body>
+    <h1>How Deterministic is WASM Floating Point</h1>
+    <p>The WASM spec defines its floating point calculations as deterministic with some exceptions. That means for most normal uses for the same set of inputs we should expect to get the same set of outputs regardless of hardware, OS and browser version. This is an attempt to test how true that is.</p>
+    <p>Traditionally in gamedev when dealing with determinism most programmers would instinctually reach for fixed point number representations as it can be very hard to make floating point representations determinisitic across hardware, compilers and other factors. So I was pretty interested to see that WASM is nominally deterministic where it matters for floats. This potentially makes some kinds of development much more straightforward.</p>
+    <h2>The Test</h2>
+    <p>Using Zig I wrote a very simple engine simulation. I chose this because it uses numerical integration which is very sensitive to error as the next frames results rely on the previous frames so any error accumulates rapidly. You can see the repo for the test here: <a href="">git link</a></p>
+    <p>The Zig code was compiled in debug just to avoid optimizations skipping work.</p>
+    <p>The simulation runs 3000 simulated ticks with a 60Hz tick rate which gives 50 seconds of simulated time. Each frame has a pre-determined random level of throttle input which is fed into the numerical integrator. To make things fun I used a real torque curve from a 1969 Ford Cortina 1600 GT and simulate the flywheel inertia as well as a constant source of friction. I also added a rpm limiter to bound the engine angular velocity within the torque curve. This is essentially all fluff to make the simulation slightly more complicated so I feel more confident in the results. I then ran the simulation on my M1 MacBook Air and recorded the results of the engine angular velocity for each frame.</p>
+    <p>This website will run and load the same simulation. It will do it twice. The first time it will compare your results against my pre-recorded results and the second time it will compare the results of the first run on your machine against the second. We can then see any deviation and thus how deterministic the result is.</p>
+    <h2>My Results</h2>
+    <p>I've not gone wide or particularly explicit with this but on this M1 MacBook Air I find Chrome and Safari to have deterministic ouputs for this test.</p>
+    <h2>Your Results</h2>
+    <p id="remote-result"></p>
+    <p id="local-result"></p>
+    <h2>Sharing</h2>
+    <p>Please share your results if you'd like on the repo <a href="">issue tracker</a>.</p>
+</body>
+
+</html>
