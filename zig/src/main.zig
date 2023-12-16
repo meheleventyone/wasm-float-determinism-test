@@ -3010,7 +3010,7 @@ const torqueCurveRPM = [_]f64{ 1000, 2000, 3000, 4000, 5000, 6000 };
 const torqueCurveTorqueNm = [_]f64{ 60, 105, 120, 124, 112, 87 };
 
 const rpmLimit: f64 = 5900;
-const flywheelIntertia: f64 = 0.5 * 10 * 0.1 * 0.1; // 10kg flywheel with a 0.1m radius using a thin disc as the model 
+const flywheelIntertia: f64 = 0.5 * 10 * 0.1 * 0.1; // 10kg flywheel with a 0.1m radius using a thin disc as the model
 const frictionTorque: f64 = 20; // lame constant friction
 const tickTime: f64 = 0.01667; // 60hz tick rate
 const revLimitUpper: f64 = rpmToAV(5900);
@@ -3056,7 +3056,7 @@ export fn start() [*]f64 {
 
         const acceleration = torque * inverseInteria;
         engineAngularVelocity += acceleration * tickTime;
-            
+
         if (engineAngularVelocity > revLimitUpper) {
             revLimiterEngaged = true;
         } else if (engineAngularVelocity < revLimitLower) {
